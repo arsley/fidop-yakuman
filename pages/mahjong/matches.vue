@@ -1,7 +1,7 @@
 <template>
     <main>
         <h1>Mahjong matches page</h1>
-        <a-table :dataSource="matches" :columns="columns"></a-table>
+        <a-table :data-source="matches" :columns="columns"></a-table>
         <p>
             <NuxtLink to="/">Home</NuxtLink>
         </p>
@@ -12,6 +12,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+    name: 'MahjongMatch',
     data: () => ({
         matches: [],
         columns: [

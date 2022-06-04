@@ -1,7 +1,7 @@
 <template>
     <main>
         <h1>Members page</h1>
-        <a-table :dataSource="members" :columns="columns"></a-table>
+        <a-table :data-source="members" :columns="columns"></a-table>
         <p>
             <NuxtLink to="/">Home</NuxtLink>
         </p>
@@ -9,15 +9,16 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+
 interface Member {
     id: string
     name: string
     discord_id: string
 }
 
-import Vue from 'vue'
-
 export default Vue.extend({
+    name: 'FidopMember',
     data: () => ({
         members: [] as Member[],
         columns: [

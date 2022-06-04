@@ -44,7 +44,7 @@ export default {
     headers: {
       common: {
         Accept: 'application/json',
-      }
+      },
     },
   },
 

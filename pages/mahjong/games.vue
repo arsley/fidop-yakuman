@@ -19,6 +19,8 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+
 interface MahjongGame {
     id: number
     east_id:  string
@@ -54,9 +56,8 @@ type TableFormattedGame = UuidWithScore & {
     sanma: boolean
 }
 
-import Vue from 'vue'
-
 export default Vue.extend({
+    name: 'MahjongGame',
     data: () => ({
         games: [] as MahjongGame[],
         members: [] as Member[],
@@ -73,12 +74,12 @@ export default Vue.extend({
     },
     methods: {
         assignTableFormattedGames() {
-            let uuidWithScoresBase = {} as TableFormattedGame
+            const uuidWithScoresBase = {} as TableFormattedGame
             this.members.forEach(member => {
                 uuidWithScoresBase[member.id] = '-'
             })
 
-            let tableFormattedGames = [] as TableFormattedGame[]
+            const tableFormattedGames = [] as TableFormattedGame[]
             this.games.forEach(game => {
                 let uuidWithScores = {} as TableFormattedGame
                 if (game.north_id !== null && game.north_score !== null) {
@@ -104,7 +105,7 @@ export default Vue.extend({
             this.tableFormattedGames = tableFormattedGames
         },
         assignColumns() {
-            let columns = [] as ColumnObject[]
+            const columns = [] as ColumnObject[]
             columns.push({
                 title: 'ID',
                 dataIndex: 'id',
