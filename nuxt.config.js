@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'fidop-yakuman',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ja',
     },
     meta: [
       { charset: 'utf-8' },
@@ -41,6 +41,11 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
+    headers: {
+      common: {
+        Accept: 'application/json',
+      }
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
