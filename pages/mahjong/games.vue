@@ -1,24 +1,17 @@
 <template>
     <main>
         <h1>Mahjong games page</h1>
-        <a-table v-if="loading" :dataSource="[]" :columns="[]"></a-table>
-        <a-table v-else :dataSource="tableFormattedGames" :columns="columns">
-            <span slot="scoreSlot" slot-scope="score, record">
-                <span v-if="!record.sanma && String(score) != '-' && score >= 30000">
-                    <a-badge status="success" :text="String(score)" />
+        <a-spin size="large" :spinning="loading">
+            <a-table :data-source="tableFormattedGames" :columns="columns">
+                <span slot="scoreSlot" slot-scope="score, record">
+                    <span v-if="!loading && String(score) == '-'">-</span>
+                    <a-badge v-else-if="!record.sanma && score >= 30000" status="success" :text="String(score)" />
+                    <a-badge v-else-if="!record.sanma && score < 30000" status="error" :text="String(score)" />
+                    <a-badge v-else-if="record.sanma && score >= 40000" status="success" :text="String(score)" />
+                    <a-badge v-else-if="record.sanma && score < 40000" status="error" :text="String(score)" />
                 </span>
-                <span v-else-if="!record.sanma && String(score) != '-' && score < 30000">
-                    <a-badge status="error" :text="String(score)" />
-                </span>
-                <span v-else-if="record.sanma && String(score) != '-' && score >= 40000">
-                    <a-badge status="success" :text="String(score)" />
-                </span>
-                <span v-else-if="record.sanma && String(score) != '-' && score < 40000">
-                    <a-badge status="error" :text="String(score)" />
-                </span>
-                <span v-else>-</span>
-            </span>
-        </a-table>
+            </a-table>
+        </a-spin>
         <p>
             <NuxtLink to="/">Home</NuxtLink>
         </p>
