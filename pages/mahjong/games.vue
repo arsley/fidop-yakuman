@@ -4,7 +4,7 @@
         <a-spin size="large" :spinning="loading">
             <a-table :data-source="tableFormattedGames" :columns="columns">
                 <span slot="scoreSlot" slot-scope="score, record">
-                    <span v-if="!loading && String(score) == '-'">-</span>
+                    <span v-if="!loading && score == null">-</span>
                     <a-badge v-else-if="!record.sanma && score >= 30000" status="success" :text="String(score)" />
                     <a-badge v-else-if="!record.sanma && score < 30000" status="error" :text="String(score)" />
                     <a-badge v-else-if="record.sanma && score >= 40000" status="success" :text="String(score)" />
@@ -48,7 +48,7 @@ interface ColumnObject {
 }
 
 interface UuidWithScore  {
-    [key: string]: number | string
+    [key: string]: number | null
 }
 
 type TableFormattedGame = UuidWithScore & {
@@ -76,7 +76,7 @@ export default Vue.extend({
         assignTableFormattedGames() {
             const uuidWithScoresBase = {} as TableFormattedGame
             this.members.forEach(member => {
-                uuidWithScoresBase[member.id] = '-'
+                uuidWithScoresBase[member.id] = null
             })
 
             const tableFormattedGames = [] as TableFormattedGame[]
