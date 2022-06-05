@@ -5,6 +5,9 @@
             <NuxtLink to="/">Home</NuxtLink>
         </p>
         <p>
+            <NuxtLink to="/login">Login</NuxtLink>
+        </p>
+        <p>
             <NuxtLink to="/members">Members</NuxtLink>
         </p>
         <p>
