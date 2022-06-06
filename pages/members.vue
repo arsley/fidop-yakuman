@@ -40,7 +40,7 @@ export default Vue.extend({
         ],
     }),
     async fetch() {
-        this.members = await this.$axios.$get('http://localhost:3000/members')
+        this.members = await this.$axios.$get('/members')
     },
 })
 </script>

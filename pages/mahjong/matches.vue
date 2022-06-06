@@ -63,8 +63,8 @@ export default Vue.extend({
         loading: true,
     }),
     async fetch() {
-        this.matches = await this.$axios.$get('http://localhost:3000/mahjong_matches')
-        this.jansous = await this.$axios.$get('http://localhost:3000/mahjong_jansous')
+        this.matches = await this.$axios.$get('/mahjong_matches')
+        this.jansous = await this.$axios.$get('/mahjong_jansous')
         this.assignMatchesWithJansou()
         this.loading = false
     },

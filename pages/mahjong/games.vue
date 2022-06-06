@@ -66,8 +66,8 @@ export default Vue.extend({
         loading: true,
     }),
     async fetch() {
-        this.games   = await this.$axios.$get('http://localhost:3000/mahjong_games')
-        this.members = await this.$axios.$get('http://localhost:3000/members')
+        this.games   = await this.$axios.$get('/mahjong_games')
+        this.members = await this.$axios.$get('/members')
         this.assignTableFormattedGames()
         this.assignColumns()
         this.loading = false

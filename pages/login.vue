@@ -41,7 +41,7 @@ export default Vue.extend({
         async handleLogin(e) {
             e.preventDefault()
             const res =
-                await this.$axios.$post('http://localhost:3000/administrator_sessions/create', {
+                await this.$axios.$post('/administrator_sessions/create', {
                     administrator: { ...this.administrator },
                     withCredentials: true,
                 })
