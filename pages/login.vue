@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { notification } from 'ant-design-vue'
 
 export default Vue.extend({
     name: 'LoginYakuman',
@@ -38,16 +39,30 @@ export default Vue.extend({
         },
     }),
     methods: {
-        async handleLogin(e) {
-            e.preventDefault()
-            const res =
-                await this.$axios.$post('/administrator_sessions/create', {
+        async handleLogin() {
+            try {
+                await this.$axios.post('/administrator_sessions/create', {
                     administrator: { ...this.administrator },
-                    withCredentials: true,
                 })
-                .catch(err => {
-                    console.log(res)
-                })
+            } catch (err) {
+                if (err.response.status === 404) {
+                    notification.error({
+                        message: 'Login failed',
+                        description: 'userid もしくは password が違います。',
+                    })
+                } else {
+                    notification.error({
+                        message: 'Unhandled error',
+                        description: `ステータスコード${err.response.status}が返されました。詳細はコンソールを確認してください。`,
+                    })
+                }
+                return
+            }
+
+            notification.success({
+                message: 'Login success',
+                description: 'Yakuman へようこそ。',
+            })
         },
     },
 })

@@ -29,7 +29,7 @@ interface MahjongJansou {
 }
 
 type MatchWithJansou = MahjongMatch & {
-    jansou_name: string
+    jansouName: string
 }
 
 export default Vue.extend({
@@ -51,8 +51,8 @@ export default Vue.extend({
             },
             {
                 title: 'Jansou',
-                dataIndex: 'jansou_name',
-                key: 'jansou_name',
+                dataIndex: 'jansouName',
+                key: 'jansouName',
             },
             {
                 title: 'Held at',
@@ -72,10 +72,10 @@ export default Vue.extend({
         assignMatchesWithJansou() {
             const matchesWithJansou = [] as MatchWithJansou[]
             this.matches.forEach(match => {
-                const jansou = this.jansous.find(jansou => jansou.id == match.mahjong_jansou_id)
-                const jansou_name = (jansou != undefined) ? jansou.name : 'Undefined'
+                const jansou = this.jansous.find(jansou => jansou.id === match.mahjong_jansou_id)
+                const jansouName = (jansou !== undefined) ? jansou.name : 'Undefined'
                 matchesWithJansou.push(
-                    Object.assign({}, match, { jansou_name })
+                    Object.assign({}, match, { jansouName })
                 )
             })
             this.matchesWithJansou = matchesWithJansou
