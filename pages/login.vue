@@ -1,21 +1,45 @@
 <template>
     <main>
         <h1>Login</h1>
-        <a-form-model layout="inline" :model="administrator" @submit="handleLogin" @submit.native.prevent>
+        <a-form-model
+            layout="inline"
+            :model="administrator"
+            @submit="handleLogin"
+            @submit.native.prevent
+        >
             <a-form-model-item>
                 <a-input v-model="administrator.userid" placeholder="Userid">
-                    <a-icon slot="prefix" type="user" style="color: rgb(0 0 0 / 25%)" />
+                    <a-icon
+                        slot="prefix"
+                        type="user"
+                        style="color: rgb(0 0 0 / 25%)"
+                    />
                 </a-input>
             </a-form-model-item>
 
             <a-form-model-item>
-                <a-input v-model="administrator.password" type="password" placeholder="Password">
-                    <a-icon slot="prefix" type="lock" style="color: rgb(0 0 0 / 25%)" />
+                <a-input
+                    v-model="administrator.password"
+                    type="password"
+                    placeholder="Password"
+                >
+                    <a-icon
+                        slot="prefix"
+                        type="lock"
+                        style="color: rgb(0 0 0 / 25%)"
+                    />
                 </a-input>
             </a-form-model-item>
 
             <a-form-model-item>
-                <a-button type="primary" html-type="submit" :disabled="administrator.userid == '' || administrator.password == ''">
+                <a-button
+                    type="primary"
+                    html-type="submit"
+                    :disabled="
+                        administrator.userid == '' ||
+                        administrator.password == ''
+                    "
+                >
                     Log in
                 </a-button>
             </a-form-model-item>

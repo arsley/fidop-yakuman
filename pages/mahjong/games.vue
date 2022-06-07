@@ -5,10 +5,26 @@
             <a-table :data-source="tableFormattedGames" :columns="columns">
                 <span slot="scoreSlot" slot-scope="score, record">
                     <span v-if="!loading && score == null">-</span>
-                    <a-badge v-else-if="!record.sanma && score >= 30000" status="success" :text="String(score)" />
-                    <a-badge v-else-if="!record.sanma && score < 30000" status="error" :text="String(score)" />
-                    <a-badge v-else-if="record.sanma && score >= 40000" status="success" :text="String(score)" />
-                    <a-badge v-else-if="record.sanma && score < 40000" status="error" :text="String(score)" />
+                    <a-badge
+                        v-else-if="!record.sanma && score >= 30000"
+                        status="success"
+                        :text="String(score)"
+                    />
+                    <a-badge
+                        v-else-if="!record.sanma && score < 30000"
+                        status="error"
+                        :text="String(score)"
+                    />
+                    <a-badge
+                        v-else-if="record.sanma && score >= 40000"
+                        status="success"
+                        :text="String(score)"
+                    />
+                    <a-badge
+                        v-else-if="record.sanma && score < 40000"
+                        status="error"
+                        :text="String(score)"
+                    />
                 </span>
             </a-table>
         </a-spin>
@@ -23,13 +39,13 @@ import Vue from 'vue'
 
 interface MahjongGame {
     id: number
-    east_id:  string
+    east_id: string
     south_id: string
-    west_id:  string
+    west_id: string
     north_id: string | null
-    east_score:  number
+    east_score: number
     south_score: number
-    west_score:  number
+    west_score: number
     north_score: number | null
     mahjong_match_id: number
 }
@@ -43,11 +59,11 @@ interface Member {
 interface ColumnObject {
     title: string
     dataIndex: string
-    key: string,
+    key: string
     scopedSlots?: { customRender: string }
 }
 
-interface UuidWithScore  {
+interface UuidWithScore {
     [key: string]: number | null
 }
 
@@ -66,7 +82,7 @@ export default Vue.extend({
         loading: true,
     }),
     async fetch() {
-        this.games   = await this.$axios.$get('/mahjong_games')
+        this.games = await this.$axios.$get('/mahjong_games')
         this.members = await this.$axios.$get('/members')
         this.assignTableFormattedGames()
         this.assignColumns()
@@ -75,29 +91,29 @@ export default Vue.extend({
     methods: {
         assignTableFormattedGames() {
             const uuidWithScoresBase = {} as TableFormattedGame
-            this.members.forEach(member => {
+            this.members.forEach((member) => {
                 uuidWithScoresBase[member.id] = null
             })
 
             const tableFormattedGames = [] as TableFormattedGame[]
-            this.games.forEach(game => {
+            this.games.forEach((game) => {
                 let uuidWithScores = {} as TableFormattedGame
                 if (game.north_id !== null && game.north_score !== null) {
                     uuidWithScores = Object.assign({}, uuidWithScoresBase, {
                         id: game.id,
                         sanma: false,
-                        [game.east_id]:  game.east_score,
+                        [game.east_id]: game.east_score,
                         [game.south_id]: game.south_score,
-                        [game.west_id]:  game.west_score,
+                        [game.west_id]: game.west_score,
                         [game.north_id]: game.north_score,
                     })
                 } else {
                     uuidWithScores = Object.assign({}, uuidWithScoresBase, {
                         id: game.id,
                         sanma: true,
-                        [game.east_id]:  game.east_score,
+                        [game.east_id]: game.east_score,
                         [game.south_id]: game.south_score,
-                        [game.west_id]:  game.west_score,
+                        [game.west_id]: game.west_score,
                     })
                 }
                 tableFormattedGames.push(uuidWithScores)
@@ -111,7 +127,7 @@ export default Vue.extend({
                 dataIndex: 'id',
                 key: 'id',
             })
-            this.members.forEach(member => {
+            this.members.forEach((member) => {
                 columns.push({
                     title: member.name,
                     dataIndex: member.id,
@@ -120,7 +136,7 @@ export default Vue.extend({
                 })
             })
             this.columns = columns
-        }
-    }
+        },
+    },
 })
 </script>

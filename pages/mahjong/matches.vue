@@ -2,7 +2,10 @@
     <main>
         <h1>Mahjong matches page</h1>
         <a-spin size="large" :spinning="loading">
-            <a-table :data-source="matchesWithJansou" :columns="columns"></a-table>
+            <a-table
+                :data-source="matchesWithJansou"
+                :columns="columns"
+            ></a-table>
         </a-spin>
         <p>
             <NuxtLink to="/">Home</NuxtLink>
@@ -71,12 +74,13 @@ export default Vue.extend({
     methods: {
         assignMatchesWithJansou() {
             const matchesWithJansou = [] as MatchWithJansou[]
-            this.matches.forEach(match => {
-                const jansou = this.jansous.find(jansou => jansou.id === match.mahjong_jansou_id)
-                const jansouName = (jansou !== undefined) ? jansou.name : 'Undefined'
-                matchesWithJansou.push(
-                    Object.assign({}, match, { jansouName })
+            this.matches.forEach((match) => {
+                const jansou = this.jansous.find(
+                    (jansou) => jansou.id === match.mahjong_jansou_id
                 )
+                const jansouName =
+                    jansou !== undefined ? jansou.name : 'Undefined'
+                matchesWithJansou.push(Object.assign({}, match, { jansouName }))
             })
             this.matchesWithJansou = matchesWithJansou
         },

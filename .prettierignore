@@ -94,3 +94,11 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# project specified
+.eslintrc.js
+nuxt.config.js
+stylelint.config.js
+*.json
+*.yml
+.prettierrc

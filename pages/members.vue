@@ -36,7 +36,7 @@ export default Vue.extend({
                 title: 'Discord ID',
                 dataIndex: 'discord_id',
                 key: 'discord_id',
-            }
+            },
         ],
     }),
     async fetch() {
