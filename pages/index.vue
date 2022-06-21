@@ -10,6 +10,9 @@
         <p>
             <a href="/mahjong/games">Mahjong games</a>
         </p>
+        <p>
+            <a href="/mahjong/jansous">Mahjong jansous</a>
+        </p>
     </main>
 </template>
 

@@ -26,11 +26,6 @@ export default Vue.extend({
         members: [] as Member[],
         columns: [
             {
-                title: 'ID',
-                dataIndex: 'id',
-                key: 'id',
-            },
-            {
                 title: 'Name',
                 dataIndex: 'name',
                 key: 'name',

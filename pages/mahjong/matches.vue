@@ -8,7 +8,7 @@
             ></a-table>
         </a-spin>
         <p>
-            <NuxtLink to="/">Home</NuxtLink>
+            <a href="/">Home</a>
         </p>
     </main>
 </template>
