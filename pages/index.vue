@@ -2,9 +2,6 @@
     <main>
         <h1>Yakuman</h1>
         <p>
-            <a href="/">Home</a>
-        </p>
-        <p>
             <a href="/members">Members</a>
         </p>
         <p>

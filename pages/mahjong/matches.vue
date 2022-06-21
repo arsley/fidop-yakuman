@@ -1,7 +1,7 @@
 <template>
     <main>
         <h1>Mahjong matches page</h1>
-        <a-spin size="large" :spinning="loading">
+        <a-spin size="large" tip="loading..." :spinning="loading">
             <a-table
                 :data-source="matchesWithJansou"
                 :columns="columns"
@@ -66,8 +66,13 @@ export default Vue.extend({
         loading: true,
     }),
     async fetch() {
-        this.matches = await this.$axios.$get('/mahjong_matches')
-        this.jansous = await this.$axios.$get('/mahjong_jansous')
+        try {
+            this.matches = await this.$axios.$get('/mahjong_matches')
+            this.jansous = await this.$axios.$get('/mahjong_jansous')
+        } catch (_err: any) {
+           return
+        }
+
         this.assignMatchesWithJansou()
         this.loading = false
     },

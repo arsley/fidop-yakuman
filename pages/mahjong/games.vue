@@ -1,7 +1,7 @@
 <template>
     <main>
         <h1>Mahjong games page</h1>
-        <a-spin size="large" :spinning="loading">
+        <a-spin size="large" tip="loading..." :spinning="loading">
             <a-table :data-source="tableFormattedGames" :columns="columns">
                 <span slot="scoreSlot" slot-scope="score, record">
                     <span v-if="!loading && score == null">-</span>
@@ -82,8 +82,13 @@ export default Vue.extend({
         loading: true,
     }),
     async fetch() {
-        this.games = await this.$axios.$get('/mahjong_games')
-        this.members = await this.$axios.$get('/members')
+        try {
+            this.games = await this.$axios.$get('/mahjong_games')
+            this.members = await this.$axios.$get('/members')
+        } catch (_err: any) {
+            return
+        }
+
         this.assignTableFormattedGames()
         this.assignColumns()
         this.loading = false
