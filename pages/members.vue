@@ -1,9 +1,11 @@
 <template>
     <main>
         <h1>Members page</h1>
-        <a-table :data-source="members" :columns="columns"></a-table>
+        <a-spin size="large" tip="loading..." :spinning="loading">
+            <a-table :data-source="members" :columns="columns"></a-table>
+        </a-spin>
         <p>
-            <NuxtLink to="/">Home</NuxtLink>
+            <a href="/">Home</a>
         </p>
     </main>
 </template>
@@ -20,6 +22,7 @@ interface Member {
 export default Vue.extend({
     name: 'FidopMember',
     data: () => ({
+        loading: true,
         members: [] as Member[],
         columns: [
             {
@@ -40,7 +43,12 @@ export default Vue.extend({
         ],
     }),
     async fetch() {
-        this.members = await this.$axios.$get('/members')
+        try {
+            this.members = await this.$axios.$get('/members')
+        } catch (_err: any) {
+            return
+        }
+        this.loading = false
     },
 })
 </script>
