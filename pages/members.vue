@@ -12,12 +12,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
-interface Member {
-    id: string
-    name: string
-    discord_id: string
-}
+import { Member } from '~/types/IMember'
 
 export default Vue.extend({
     name: 'FidopMember',

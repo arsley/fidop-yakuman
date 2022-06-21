@@ -15,14 +15,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
-interface MahjongJansou {
-    id: string
-    name: string
-    google_map_url: string
-    address: string
-    note: string
-}
+import { MahjongJansou } from '~/types/IMahjongJansou'
 
 export default Vue.extend({
     name: 'MahjongMatch',
