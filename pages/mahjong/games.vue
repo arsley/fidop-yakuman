@@ -2,7 +2,11 @@
     <main>
         <h1>Mahjong games page</h1>
         <a-spin size="large" tip="loading..." :spinning="loading">
-            <a-table :data-source="tableFormattedGames" :columns="columns" :pagination="paginationOptions">
+            <a-table
+                :data-source="tableFormattedGames"
+                :columns="columns"
+                :pagination="paginationOptions"
+            >
                 <span slot="scoreSlot" slot-scope="score, record">
                     <span v-if="!loading && score == null">-</span>
                     <a-badge

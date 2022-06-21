@@ -70,7 +70,7 @@ export default Vue.extend({
             this.matches = await this.$axios.$get('/mahjong_matches')
             this.jansous = await this.$axios.$get('/mahjong_jansous')
         } catch (_err: any) {
-           return
+            return
         }
 
         this.assignMatchesWithJansou()
