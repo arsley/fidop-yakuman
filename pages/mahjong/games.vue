@@ -2,7 +2,7 @@
     <main>
         <h1>Mahjong games page</h1>
         <a-spin size="large" tip="loading..." :spinning="loading">
-            <a-table :data-source="tableFormattedGames" :columns="columns">
+            <a-table :data-source="tableFormattedGames" :columns="columns" :pagination="paginationOptions">
                 <span slot="scoreSlot" slot-scope="score, record">
                     <span v-if="!loading && score == null">-</span>
                     <a-badge
@@ -79,6 +79,9 @@ export default Vue.extend({
         members: [] as Member[],
         tableFormattedGames: [] as UuidWithScore[],
         columns: [] as ColumnObject[],
+        paginationOptions: {
+            pageSize: 20,
+        },
         loading: true,
     }),
     async fetch() {
