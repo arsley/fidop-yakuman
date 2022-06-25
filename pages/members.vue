@@ -5,7 +5,7 @@
             <a-table :data-source="members" :columns="columns"></a-table>
         </a-spin>
         <p>
-            <a href="/">Home</a>
+            <NuxtLink to="/">Home</NuxtLink>
         </p>
     </main>
 </template>

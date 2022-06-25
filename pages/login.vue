@@ -11,22 +11,16 @@
                     <a-icon
                         slot="prefix"
                         type="user"
-                        style="color: rgb(0 0 0 / 25%)"
-                    />
+                        style="color: rgb(0 0 0 / 25%)" />
                 </a-input>
             </a-form-model-item>
 
             <a-form-model-item>
-                <a-input
-                    v-model="auth.password"
-                    type="password"
-                    placeholder="Password"
-                >
+                <a-input v-model="auth.password" type="password" placeholder="Password">
                     <a-icon
                         slot="prefix"
                         type="lock"
-                        style="color: rgb(0 0 0 / 25%)"
-                    />
+                        style="color: rgb(0 0 0 / 25%)" />
                 </a-input>
             </a-form-model-item>
 
@@ -45,6 +39,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { notification } from 'ant-design-vue'
+import { HTTPResponse } from '@nuxtjs/auth-next'
+
 export default Vue.extend({
     auth: false,
     name: 'LoginYakuman',
@@ -56,9 +52,11 @@ export default Vue.extend({
     }),
     methods: {
         async handleLogin() {
+            let response: HTTPResponse
             try {
-                let response = await this.$auth.loginWith('local', { data: { auth: { ...this.auth }}})
+                response = await this.$auth.loginWith('local', { data: { auth: { ...this.auth }}}) as HTTPResponse
             } catch (err: any) {
+                console.log(err)
                 if (err.response.status === 404) {
                     notification.error({
                         message: 'Login failed',
@@ -72,11 +70,13 @@ export default Vue.extend({
                 }
                 return
             }
+            // this.$auth.loggedIn を正しく機能させるため、ユーザのIDをここで割り当てる。
+            this.$auth.setUser({ id: response.data.id })
 
-            notification.success({
-                message: 'Login success',
-                description: 'Yakuman へようこそ。',
-            })
+            // ログイン後リダイレクトが auth-next の上で正しく動作しないので $router.push を用いる。
+            // FIX ME
+            const redirect = this.$auth.$storage.getUniversal('redirect') as string
+            this.$router.push(redirect)
         },
     },
 })

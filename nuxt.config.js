@@ -61,7 +61,6 @@ export default {
     redirect: {
       login: '/login',
       logout: '/login',
-      callback: '/',
       home: '/',
     },
     strategies: {
@@ -74,6 +73,7 @@ export default {
           type: 'Bearer',
         },
         user: {
+          property: 'id',
           autoFetch: false,
         },
         endpoints: {
