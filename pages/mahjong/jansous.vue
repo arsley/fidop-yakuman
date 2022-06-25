@@ -2,10 +2,7 @@
     <main>
         <h1>Mahjong jansous page</h1>
         <a-spin size="large" tip="loading..." :spinning="loading">
-            <a-table
-                :data-source="jansous"
-                :columns="columns"
-            ></a-table>
+            <a-table :data-source="jansous" :columns="columns"></a-table>
         </a-spin>
         <p>
             <NuxtLink to="/">Home</NuxtLink>

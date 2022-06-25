@@ -11,16 +11,22 @@
                     <a-icon
                         slot="prefix"
                         type="user"
-                        style="color: rgb(0 0 0 / 25%)" />
+                        style="color: rgb(0 0 0 / 25%)"
+                    />
                 </a-input>
             </a-form-model-item>
 
             <a-form-model-item>
-                <a-input v-model="auth.password" type="password" placeholder="Password">
+                <a-input
+                    v-model="auth.password"
+                    type="password"
+                    placeholder="Password"
+                >
                     <a-icon
                         slot="prefix"
                         type="lock"
-                        style="color: rgb(0 0 0 / 25%)" />
+                        style="color: rgb(0 0 0 / 25%)"
+                    />
                 </a-input>
             </a-form-model-item>
 
@@ -28,7 +34,8 @@
                 <a-button
                     type="primary"
                     html-type="submit"
-                    :disabled=" auth.userid == '' || auth.password == ''">
+                    :disabled="auth.userid == '' || auth.password == ''"
+                >
                     Log in
                 </a-button>
             </a-form-model-item>
@@ -54,9 +61,10 @@ export default Vue.extend({
         async handleLogin() {
             let response: HTTPResponse
             try {
-                response = await this.$auth.loginWith('local', { data: { auth: { ...this.auth }}}) as HTTPResponse
+                response = (await this.$auth.loginWith('local', {
+                    data: { auth: { ...this.auth } },
+                })) as HTTPResponse
             } catch (err: any) {
-                console.log(err)
                 if (err.response.status === 404) {
                     notification.error({
                         message: 'Login failed',
@@ -75,7 +83,9 @@ export default Vue.extend({
 
             // ログイン後リダイレクトが auth-next の上で正しく動作しないので $router.push を用いる。
             // FIX ME
-            const redirect = this.$auth.$storage.getUniversal('redirect') as string
+            const redirect = this.$auth.$storage.getUniversal(
+                'redirect'
+            ) as string
             this.$router.push(redirect)
         },
     },
