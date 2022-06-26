@@ -80,6 +80,10 @@ export default Vue.extend({
             }
             // this.$auth.loggedIn を正しく機能させるため、ユーザのIDをここで割り当てる。
             this.$auth.setUser({ id: response.data.id })
+            notification.success({
+                message: 'Login success',
+                description: 'Yakuman へようこそ。',
+            })
 
             // ログイン後リダイレクトが auth-next の上で正しく動作しないので $router.push を用いる。
             // FIX ME
