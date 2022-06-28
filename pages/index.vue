@@ -1,18 +1,11 @@
 <template>
     <main>
-        <h1>Yakuman</h1>
-        <p>
-            <NuxtLink to="/members">Members</NuxtLink>
-        </p>
-        <p>
-            <NuxtLink to="/mahjong/matches">Mahjong matches</NuxtLink>
-        </p>
-        <p>
-            <NuxtLink to="/mahjong/games">Mahjong games</NuxtLink>
-        </p>
-        <p>
-            <NuxtLink to="/mahjong/jansous">Mahjong jansous</NuxtLink>
-        </p>
+        <a-page-header
+            title="Yakuman"
+            :breadcrumb="{
+                props: { routes: [{ path: '/', breadcrumbName: 'Home' }] },
+            }"
+        />
     </main>
 </template>
 

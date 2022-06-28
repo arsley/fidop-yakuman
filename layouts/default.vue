@@ -34,7 +34,7 @@
             </a-menu>
         </a-layout-sider>
         <a-layout :style="styles.layout">
-            <a-layout-content :style="styles.layoutContent" >
+            <a-layout-content :style="styles.layoutContent">
                 <Nuxt />
             </a-layout-content>
         </a-layout>
@@ -61,19 +61,27 @@ export default Vue.extend({
     data: () => ({
         styles: {
             ...defaultStyles,
-        }
+        },
     }),
     methods: {
         onBreakpoint(isBroken: boolean) {
             if (isBroken) {
-                this.styles.layoutContent = Object.assign({}, this.styles.layoutContent, {
-                    margin: '1em .5em',
-                    padding: '1em'
-                })
+                this.styles.layoutContent = Object.assign(
+                    {},
+                    this.styles.layoutContent,
+                    {
+                        margin: '1em .5em',
+                        padding: '1em',
+                    }
+                )
             } else {
-                this.styles.layoutContent = Object.assign({}, this.styles.layoutContent, defaultStyles.layoutContent)
+                this.styles.layoutContent = Object.assign(
+                    {},
+                    this.styles.layoutContent,
+                    defaultStyles.layoutContent
+                )
             }
-        }
+        },
     },
 })
 </script>

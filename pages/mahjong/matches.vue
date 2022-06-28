@@ -1,9 +1,6 @@
 <template>
     <main>
-        <a-page-header
-            title="戦一覧"
-            :breadcrumb="{ props: { routes } }"
-        />
+        <a-page-header title="戦一覧" :breadcrumb="{ props: { routes } }" />
         <a-spin size="large" tip="loading..." :spinning="loading">
             <a-table
                 :data-source="matchesWithJansou"
