@@ -1,8 +1,8 @@
 <template>
     <main>
-        <h1>Members page</h1>
+        <h1>Mahjong jansous page</h1>
         <a-spin size="large" tip="loading..." :spinning="loading">
-            <a-table :data-source="members" :columns="columns"></a-table>
+            <a-table :data-source="jansous" :columns="columns"></a-table>
         </a-spin>
         <p>
             <NuxtLink to="/">Home</NuxtLink>
@@ -12,13 +12,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Member } from '~/types/IMember'
+import { MahjongJansou } from '~/types/IMahjongJansou'
 
 export default Vue.extend({
-    name: 'FidopMember',
+    name: 'MahjongMatch',
     data: () => ({
-        loading: true,
-        members: [] as Member[],
+        jansous: [] as MahjongJansou[],
         columns: [
             {
                 title: 'Name',
@@ -26,18 +25,25 @@ export default Vue.extend({
                 key: 'name',
             },
             {
-                title: 'Discord ID',
-                dataIndex: 'discord_id',
-                key: 'discord_id',
+                title: 'GoogleMap',
+                dataIndex: 'google_map_url',
+                key: 'google_map_url',
+            },
+            {
+                title: 'Address',
+                dataIndex: 'address',
+                key: 'address',
             },
         ],
+        loading: true,
     }),
     async fetch() {
         try {
-            this.members = await this.$axios.$get('/members')
+            this.jansous = await this.$axios.$get('/mahjong_jansous')
         } catch (_err: any) {
             return
         }
+
         this.loading = false
     },
 })

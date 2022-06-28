@@ -20,7 +20,6 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/antd-ui',
-    '@/plugins/axios'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -36,9 +35,13 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+
+  router: {
+    middleware: ['auth']
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -51,6 +54,34 @@ export default {
     },
     credentials: true,
     proxyHeaders: true,
+  },
+
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/',
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          required: true,
+          global: true,
+          name: 'Authorization',
+          type: 'Bearer',
+        },
+        user: {
+          property: 'id',
+          autoFetch: false,
+        },
+        endpoints: {
+          login: { url: '/auth/create', method: 'post' },
+          logout: { url: '/auth/destroy', method: 'delete' },
+          user: false,
+        },
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

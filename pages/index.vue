@@ -2,13 +2,16 @@
     <main>
         <h1>Yakuman</h1>
         <p>
-            <a href="/members">Members</a>
+            <NuxtLink to="/members">Members</NuxtLink>
         </p>
         <p>
-            <a href="/mahjong/matches">Mahjong matches</a>
+            <NuxtLink to="/mahjong/matches">Mahjong matches</NuxtLink>
         </p>
         <p>
-            <a href="/mahjong/games">Mahjong games</a>
+            <NuxtLink to="/mahjong/games">Mahjong games</NuxtLink>
+        </p>
+        <p>
+            <NuxtLink to="/mahjong/jansous">Mahjong jansous</NuxtLink>
         </p>
     </main>
 </template>

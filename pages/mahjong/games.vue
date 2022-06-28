@@ -40,25 +40,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
-interface MahjongGame {
-    id: number
-    east_id: string
-    south_id: string
-    west_id: string
-    north_id: string | null
-    east_score: number
-    south_score: number
-    west_score: number
-    north_score: number | null
-    mahjong_match_id: number
-}
-
-interface Member {
-    id: string
-    name: string
-    discord_id: string
-}
+import { MahjongGame } from '~/types/IMahjongGame'
+import { Member } from '~/types/IMember'
 
 interface ColumnObject {
     title: string

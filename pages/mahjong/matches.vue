@@ -15,21 +15,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
-interface MahjongMatch {
-    id: number
-    name: string
-    created_at: Date
-    mahjong_jansou_id: string
-}
-
-interface MahjongJansou {
-    id: string
-    name: string
-    google_map_url: string
-    address: string
-    note: string
-}
+import { MahjongMatch } from '~/types/IMahjongMatch'
+import { MahjongJansou } from '~/types/IMahjongJansou'
 
 type MatchWithJansou = MahjongMatch & {
     jansouName: string
@@ -42,11 +29,6 @@ export default Vue.extend({
         jansous: [] as MahjongJansou[],
         matchesWithJansou: [] as MatchWithJansou[],
         columns: [
-            {
-                title: 'ID',
-                dataIndex: 'id',
-                key: 'id',
-            },
             {
                 title: 'Name',
                 dataIndex: 'name',
