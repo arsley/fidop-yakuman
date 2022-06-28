@@ -1,12 +1,9 @@
 <template>
     <main>
-        <h1>Members page</h1>
+        <a-page-header title="雀士一覧" :breadcrumb="{ props: { routes } }" />
         <a-spin size="large" tip="loading..." :spinning="loading">
             <a-table :data-source="members" :columns="columns"></a-table>
         </a-spin>
-        <p>
-            <NuxtLink to="/">Home</NuxtLink>
-        </p>
     </main>
 </template>
 
@@ -17,6 +14,10 @@ import { Member } from '~/types/IMember'
 export default Vue.extend({
     name: 'FidopMember',
     data: () => ({
+        routes: [
+            { path: '/', breadcrumbName: 'Home' },
+            { path: '/members', breadcrumbName: 'members' },
+        ],
         loading: true,
         members: [] as Member[],
         columns: [

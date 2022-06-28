@@ -1,6 +1,6 @@
 <template>
     <main>
-        <h1>Mahjong games page</h1>
+        <a-page-header title="戦績一覧" :breadcrumb="{ props: { routes } }" />
         <a-spin size="large" tip="loading..." :spinning="loading">
             <a-table
                 :data-source="tableFormattedGames"
@@ -32,9 +32,6 @@
                 </span>
             </a-table>
         </a-spin>
-        <p>
-            <NuxtLink to="/">Home</NuxtLink>
-        </p>
     </main>
 </template>
 
@@ -62,6 +59,10 @@ type TableFormattedGame = UuidWithScore & {
 export default Vue.extend({
     name: 'MahjongGame',
     data: () => ({
+        routes: [
+            { path: '/', breadcrumbName: 'Home' },
+            { path: '/games', breadcrumbName: 'games' },
+        ],
         games: [] as MahjongGame[],
         members: [] as Member[],
         tableFormattedGames: [] as UuidWithScore[],
