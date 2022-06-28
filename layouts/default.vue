@@ -1,6 +1,9 @@
 <template>
     <a-layout>
-        <a-layout-sider theme="dark" :style="{ height: '100vh' }" v-model="collapsed" :trigger="null" collapsible>
+        <a-layout-sider
+            theme="dark"
+            :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }"
+        >
             <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
                 <a-menu-item key="1">
                     <NuxtLink to="/members">
@@ -22,28 +25,12 @@
                 </a-menu-item>
             </a-menu>
         </a-layout-sider>
-        <a-layout>
-            <a-layout-header style="background: #fff; padding: 0">
-                <a-icon
-                    :style="{ padding: '0 3em' }"
-                    :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-                    @click="() => (collapsed = !collapsed)"
-                />
-            </a-layout-header>
+        <a-layout :style="{ marginLeft: '14em', height: '100vh' }">
             <a-layout-content
-                :style="{ margin: '3em 2em', padding: '3em', background: '#fff' }"
+                :style="{ overflow: 'auto', margin: '3em 2em', padding: '3em', background: '#fefefe' }"
             >
-            <Nuxt />
+                <Nuxt />
             </a-layout-content>
         </a-layout>
     </a-layout>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      collapsed: false,
-    };
-  },
-};
-</script>
