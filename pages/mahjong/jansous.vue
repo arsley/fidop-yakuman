@@ -1,12 +1,12 @@
 <template>
     <main>
-        <h1>Mahjong jansous page</h1>
+        <a-page-header
+            title="雀荘一覧"
+            :breadcrumb="{ props: { routes } }"
+        />
         <a-spin size="large" tip="loading..." :spinning="loading">
             <a-table :data-source="jansous" :columns="columns"></a-table>
         </a-spin>
-        <p>
-            <NuxtLink to="/">Home</NuxtLink>
-        </p>
     </main>
 </template>
 
@@ -17,6 +17,10 @@ import { MahjongJansou } from '~/types/IMahjongJansou'
 export default Vue.extend({
     name: 'MahjongMatch',
     data: () => ({
+        routes: [
+            { path: '/', breadcrumbName: 'Home' },
+            { path: '/jansous', breadcrumbName: 'jansous' },
+        ],
         jansous: [] as MahjongJansou[],
         columns: [
             {

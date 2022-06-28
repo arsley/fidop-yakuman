@@ -1,15 +1,15 @@
 <template>
     <main>
-        <h1>Mahjong matches page</h1>
+        <a-page-header
+            title="戦一覧"
+            :breadcrumb="{ props: { routes } }"
+        />
         <a-spin size="large" tip="loading..." :spinning="loading">
             <a-table
                 :data-source="matchesWithJansou"
                 :columns="columns"
             ></a-table>
         </a-spin>
-        <p>
-            <NuxtLink to="/">Home</NuxtLink>
-        </p>
     </main>
 </template>
 
@@ -25,6 +25,10 @@ type MatchWithJansou = MahjongMatch & {
 export default Vue.extend({
     name: 'MahjongMatch',
     data: () => ({
+        routes: [
+            { path: '/', breadcrumbName: 'Home' },
+            { path: '/matches', breadcrumbName: 'matches' },
+        ],
         matches: [] as MahjongMatch[],
         jansous: [] as MahjongJansou[],
         matchesWithJansou: [] as MatchWithJansou[],

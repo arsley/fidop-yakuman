@@ -14,12 +14,18 @@
                     </NuxtLink>
                 </a-menu-item>
                 <a-menu-item key="2">
+                    <NuxtLink to="/mahjong/jansous">
+                        <a-icon type="upload" />
+                        <span>雀荘一覧</span>
+                    </NuxtLink>
+                </a-menu-item>
+                <a-menu-item key="3">
                     <NuxtLink to="/mahjong/matches">
                         <a-icon type="video-camera" />
                         <span>戦一覧</span>
                     </NuxtLink>
                 </a-menu-item>
-                <a-menu-item key="3">
+                <a-menu-item key="4">
                     <NuxtLink to="/mahjong/games">
                         <a-icon type="upload" />
                         <span>戦績一覧</span>
