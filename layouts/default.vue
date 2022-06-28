@@ -44,19 +44,23 @@
 <script lang="ts">
 import Vue from 'vue'
 
+const defaultStyles = {
+    layout: {
+        height: '100vh',
+    },
+    layoutContent: {
+        overflow: 'auto',
+        margin: '3em 2em',
+        padding: '2em',
+        background: '#fefefe',
+    },
+}
+
 export default Vue.extend({
     name: 'DefaultLayout',
     data: () => ({
         styles: {
-            layout: {
-                height: '100vh',
-            },
-            layoutContent: {
-                overflow: 'auto',
-                margin: '3em 2em',
-                padding: '3em',
-                background: '#fefefe',
-            },
+            ...defaultStyles,
         }
     }),
     methods: {
@@ -67,10 +71,7 @@ export default Vue.extend({
                     padding: '1em'
                 })
             } else {
-                this.styles.layoutContent = Object.assign({}, this.styles.layoutContent, {
-                    margin: '3em 2em',
-                    padding: '3em'
-                })
+                this.styles.layoutContent = Object.assign({}, this.styles.layoutContent, defaultStyles.layoutContent)
             }
         }
     },
