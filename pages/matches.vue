@@ -12,10 +12,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { MahjongMatch } from '~/types/IMahjongMatch'
-import { MahjongJansou } from '~/types/IMahjongJansou'
+import { Match } from '~/types/IMatch'
+import { Jansou } from '~/types/IJansou'
 
-type MatchWithJansou = MahjongMatch & {
+type MatchWithJansou = Match & {
     jansouName: string
 }
 
@@ -26,8 +26,8 @@ export default Vue.extend({
             { path: '/', breadcrumbName: 'Home' },
             { path: '/matches', breadcrumbName: 'matches' },
         ],
-        matches: [] as MahjongMatch[],
-        jansous: [] as MahjongJansou[],
+        matches: [] as Match[],
+        jansous: [] as Jansou[],
         matchesWithJansou: [] as MatchWithJansou[],
         columns: [
             {
@@ -50,8 +50,8 @@ export default Vue.extend({
     }),
     async fetch() {
         try {
-            this.matches = await this.$axios.$get('/mahjong_matches')
-            this.jansous = await this.$axios.$get('/mahjong_jansous')
+            this.matches = await this.$axios.$get('/matches')
+            this.jansous = await this.$axios.$get('/jansous')
         } catch (_err: any) {
             return
         }
@@ -64,7 +64,7 @@ export default Vue.extend({
             const matchesWithJansou = [] as MatchWithJansou[]
             this.matches.forEach((match) => {
                 const jansou = this.jansous.find(
-                    (jansou) => jansou.id === match.mahjong_jansou_id
+                    (jansou) => jansou.id === match.jansou_id
                 )
                 const jansouName =
                     jansou !== undefined ? jansou.name : 'Undefined'
