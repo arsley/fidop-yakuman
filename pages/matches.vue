@@ -5,7 +5,11 @@
             <a-table
                 :data-source="matchesWithJansou"
                 :columns="columns"
-            ></a-table>
+            >
+                <span slot="nameRenderer" slot-scope="name, record">
+                    <NuxtLink :to="`/match/${record.id}`">{{ name }}</NuxtLink>
+                </span>
+            </a-table>
         </a-spin>
     </main>
 </template>
@@ -34,6 +38,7 @@ export default Vue.extend({
                 title: 'Name',
                 dataIndex: 'name',
                 key: 'name',
+                scopedSlots: { customRender: 'nameRenderer' },
             },
             {
                 title: 'Jansou',
