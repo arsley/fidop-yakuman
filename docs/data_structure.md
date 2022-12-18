@@ -23,31 +23,31 @@ CollectionID/DocumentID : `yonmas/{uuid}`
 
 | FieldName     | Type     | Required? |
 |---------------|----------|-----------|
-| EastScore     | integer  | true      |
-| EastPlayerID  | string   | true      |
-| SouthScore    | integer  | true      |
-| SouthPlayerID | string   | true      |
-| WestScore     | integer  | true      |
-| WestPlayerID  | string   | true      |
-| NorthScore    | integer  | true      |
-| NorthPlayerID | string   | true      |
-| JansouID      | string   | true      |
-| CreatedAt     | datetime | true      |
+| EastScore     | integer  | yes       |
+| EastPlayerID  | string   | yes       |
+| SouthScore    | integer  | yes       |
+| SouthPlayerID | string   | yes       |
+| WestScore     | integer  | yes       |
+| WestPlayerID  | string   | yes       |
+| NorthScore    | integer  | yes       |
+| NorthPlayerID | string   | yes       |
+| JansouID      | string   | yes       |
+| CreatedAt     | datetime | yes       |
 
 ## 試合結果 - 三麻 (Sanmas)
 
 CollectionID/DocumentID : `sanmas/{uuid}`
 
-|   FieldName   | Type    | Required? |
-|---------------|---------|-----------|
-| EastScore     | integer | yes       |
-| EastPlayerID  | string  | yes       |
-| SouthScore    | integer | yes       |
-| SouthPlayerID | string  | yes       |
-| WestScore     | integer | yes       |
-| WestPlayerID  | string  | yes       |
-| JansouID      | string  | yes       |
-| CreatedAt     | datetime | true      |
+|   FieldName   | Type     | Required? |
+|---------------|----------|-----------|
+| EastScore     | integer  | yes       |
+| EastPlayerID  | string   | yes       |
+| SouthScore    | integer  | yes       |
+| SouthPlayerID | string   | yes       |
+| WestScore     | integer  | yes       |
+| WestPlayerID  | string   | yes       |
+| JansouID      | string   | yes       |
+| CreatedAt     | datetime | yes       |
 
 ## 試合グループ (Matches)
 
@@ -63,7 +63,7 @@ CollectionID/DocumentID : `matches/{uuid}/results/{uuid}`
 
 | FieldName     | Type    | Required? |
 |---------------|---------|-----------|
-| ResultPath    | string  | true      |
+| ResultPath    | string  | yes       |
 
 - `ResultPath`には `yonmas/{uuid}` もしくは `sanmas/{uuid}` のようにパス情報が入る。
 
